@@ -23,11 +23,15 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--report",required=True); p.add_argument("--map",required=True,dest="map_path")
     p.add_argument("--web-root",required=True); p.add_argument("--expected-tests",required=True,type=int)
+    p.add_argument("--expect-candidate-sha",required=True)
+    p.add_argument("--expect-candidate-tree",required=True)
     p.add_argument("--json-out",required=True); a=p.parse_args()
     report=load(a.report,"Vitest report"); mapping=load(a.map_path,"semantic map")
     if mapping.get("schema")!="linguagraph-m9-targeted-test-map/v1": die("unexpected semantic-map schema")
     if mapping.get("expected_total")!=a.expected_tests: die("semantic-map expected_total mismatch")
-    for key,want in (("numTotalTests",a.expected_tests),("numPassedTests",a.expected_tests),("numFailedTests",0),("numPendingTests",0)):
+    if mapping.get("product_candidate_sha")!=a.expect_candidate_sha: die("semantic-map candidate SHA mismatch")
+    if mapping.get("product_candidate_tree")!=a.expect_candidate_tree: die("semantic-map candidate tree mismatch")
+    for key,want in (("numTotalTests",a.expected_tests),("numPassedTests",a.expected_tests),("numFailedTests",0),("numPendingTests",0),("numTodoTests",0)):
         got=report.get(key)
         if type(got) is not int or got!=want: die("%s is %r (expected %d)"%(key,got,want))
     if report.get("success") is not True: die("Vitest JSON success is not true")

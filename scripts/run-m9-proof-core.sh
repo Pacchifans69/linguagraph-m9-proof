@@ -181,6 +181,7 @@ guard_candidate_config() {
   expect "${EXPECTED_PYTEST_PASSED_GUARD:-$EXPECTED_PYTEST_PASSED}" "$EXPECTED_PYTEST_PASSED" configured_pytest_count
   expect "${EXPECTED_VITEST_PASSED_GUARD:-$EXPECTED_VITEST_PASSED}" "$EXPECTED_VITEST_PASSED" configured_vitest_count
   expect "${EXPECTED_PLAYWRIGHT_PASSED_GUARD:-$EXPECTED_PLAYWRIGHT_PASSED}" "$EXPECTED_PLAYWRIGHT_PASSED" configured_playwright_count
+  expect "${EXPECTED_M9_TARGETED_PASSED_GUARD:-$EXPECTED_M9_TARGETED_PASSED}" "$EXPECTED_M9_TARGETED_PASSED" configured_m9_targeted_count
 }
 
 guard_approved_proof() {
@@ -417,6 +418,8 @@ frontend() {
     --map "$PROOF_ROOT/scripts/lib/m9-targeted-test-map.json" \
     --web-root "$CANDIDATE/apps/web" \
     --expected-tests "$EXPECTED_M9_TARGETED_PASSED" \
+    --expect-candidate-sha "$APP_SHA" \
+    --expect-candidate-tree "$APP_TREE" \
     --json-out "$EVIDENCE/m9-targeted-vitest-check.json" \
     | tee "$EVIDENCE/m9-targeted-vitest-check.log"
   # Retain M8 routing-focused predecessor regression evidence.
@@ -432,12 +435,12 @@ frontend() {
   npm run build
 }
 
-# Frozen Playwright runtime evidence (M9-M9-GATE2 / R2B section 10).
+# Frozen Playwright runtime evidence (M9 Gate 2; inherited R2B hardening).
 #
 # Exactly one --reporter option (list,json). CI=1 and an explicit JSON output
 # file are exported. The exact JSON report is then parsed with Python stdlib and
 # must prove: every project retries == 0, project names == {chromium},
-# expected == 34, unexpected == 0, flaky == 0, skipped == 0, and that the set of
+# expected == 35, unexpected == 0, flaky == 0, skipped == 0, and that the set of
 # spec files in the report equals the seven frozen specs exactly.
 #
 # Namespace: the frozen Product config sets `testDir: './e2e'` and npx runs from

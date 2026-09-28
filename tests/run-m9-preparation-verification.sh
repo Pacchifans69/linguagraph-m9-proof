@@ -6,7 +6,7 @@ TMP="$(mktemp -d "${TMPDIR:-/tmp}/m9-prep-verify.XXXXXX")"
 trap 'rm -rf "$TMP"' EXIT
 printf '===== M9 PROOF-HARNESS PREPARATION VERIFICATION =====\n'
 M9_SYNTHETIC_TEST_MODE=1 bash "$ROOT/tests/run-static-verification.sh"
-"$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$ROOT/tests/fixtures/vitest-targeted-good.json" --map "$ROOT/scripts/lib/m9-targeted-test-map.json" --web-root /candidate/apps/web --expected-tests 113 --json-out "$TMP/good.json"
+"$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$ROOT/tests/fixtures/vitest-targeted-good.json" --map "$ROOT/scripts/lib/m9-targeted-test-map.json" --web-root /candidate/apps/web --expected-tests 113 --expect-candidate-sha 91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3 --expect-candidate-tree e734b357d60364faccb428efd78202099f414aa1 --json-out "$TMP/good.json"
 grep -Fq '"status": "PASS"' "$TMP/good.json"
 "$PYTHON" - "$ROOT/tests/fixtures/vitest-targeted-good.json" "$TMP/missing.json" <<'PY'
 import json,sys
@@ -15,7 +15,7 @@ with open(src,encoding="utf-8") as h:d=json.load(h)
 d["testResults"][0]["assertionResults"][0]["title"]="MISSING-G-01"
 with open(out,"w",encoding="utf-8") as h:json.dump(d,h)
 PY
-if "$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$TMP/missing.json" --map "$ROOT/scripts/lib/m9-targeted-test-map.json" --web-root /candidate/apps/web --expected-tests 113 --json-out "$TMP/missing-out.json" >/dev/null 2>&1; then
+if "$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$TMP/missing.json" --map "$ROOT/scripts/lib/m9-targeted-test-map.json" --web-root /candidate/apps/web --expected-tests 113 --expect-candidate-sha 91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3 --expect-candidate-tree e734b357d60364faccb428efd78202099f414aa1 --json-out "$TMP/missing-out.json" >/dev/null 2>&1; then
   printf 'FAIL: missing semantic title was accepted\n' >&2; exit 1
 fi
 "$PYTHON" - "$ROOT/tests/fixtures/vitest-targeted-good.json" "$TMP/failed.json" <<'PY'
@@ -25,7 +25,7 @@ with open(src,encoding="utf-8") as h:d=json.load(h)
 d["testResults"][0]["assertionResults"][0]["status"]="failed";d["numPassedTests"]=112;d["numFailedTests"]=1;d["success"]=False
 with open(out,"w",encoding="utf-8") as h:json.dump(d,h)
 PY
-if "$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$TMP/failed.json" --map "$ROOT/scripts/lib/m9-targeted-test-map.json" --web-root /candidate/apps/web --expected-tests 113 --json-out "$TMP/failed-out.json" >/dev/null 2>&1; then
+if "$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$TMP/failed.json" --map "$ROOT/scripts/lib/m9-targeted-test-map.json" --web-root /candidate/apps/web --expected-tests 113 --expect-candidate-sha 91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3 --expect-candidate-tree e734b357d60364faccb428efd78202099f414aa1 --json-out "$TMP/failed-out.json" >/dev/null 2>&1; then
   printf 'FAIL: failed targeted assertion was accepted\n' >&2; exit 1
 fi
 CORE="$ROOT/scripts/run-m9-proof-core.sh"

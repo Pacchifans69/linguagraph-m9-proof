@@ -1070,7 +1070,7 @@ v26() {
 # Playwright JSON report mutations.
 #
 # The checked-in positive fixture is minimal and realistic: seven suites with
-# Playwright testDir-relative `suite.file` values (`<name>.spec.ts`) and 34 spec
+# Playwright testDir-relative `suite.file` values (`<name>.spec.ts`) and 35 spec
 # objects. Every negative report is derived PROGRAMMATICALLY from it, so no
 # near-duplicate fixture tree is maintained and no impossible-path fixture can
 # drift from the contract.

@@ -97,8 +97,10 @@ rather than fabricating it.
 
 ### Pre-claim provider identity
 
-`scripts/lib/m9-provider-identity.sh` is the single source of truth for the
-reviewed immutable execution identity and for the read-only IMDS verification:
+`scripts/lib/m9-provider-identity.sh` currently carries the inherited M8
+provider-candidate tuple solely as an offline fixture and future revalidation
+candidate. **It is not reviewed M9 execution identity evidence while
+`M9_PROVIDER_BINDING_READY=NO`.** The candidate tuple is:
 
 ```text
 instance ID:   i-j6c9854oyawy89fcdxy2
@@ -529,9 +531,10 @@ fails closed. Raw-log count guards are secondary only.
 These are guards for the bound Product tree, not proof results:
 
 ```text
-pytest:       602 passed
-Vitest:       561 passed
-Playwright:    35 passed
+pytest:                 602 passed
+Vitest:                 561 passed
+M9 targeted Vitest:     113 passed
+Playwright:              35 passed
 ```
 
 A formal run must actually produce those results. The frontend stage also runs
@@ -691,7 +694,7 @@ NO Product repository mutation
 NO Product main/branch movement
 NO PR
 NO merge
-NO reuse of M6/M7 run authorization
+NO reuse of M6/M7/M8 run authorization
 NO unreviewed provider identity substitution
 NO OSS bucket/object mutation outside a formally authorized run
 NO credential provisioning or RAM policy mutation
@@ -699,15 +702,18 @@ NO credential provisioning or RAM policy mutation
 
 ## Preflight
 
-After this preparation source is independently audited, clone the exact proof
-repository on the intended ECS host and run:
+At this preparation checkpoint the M9 provider binding is deliberately
+**UNBOUND**, so `scripts/preflight-m9-alibaba-ecs.sh` intentionally fails closed
+at the provider-binding guard and must not be used as discovery authority yet.
 
-```bash
-bash scripts/preflight-m9-alibaba-ecs.sh
-```
+The next lifecycle step is a separately Human-authorized **read-only provider
+rediscovery / rebind review**. Only after the resulting immutable provider tuple
+is reviewed and landed with `M9_PROVIDER_BINDING_READY=YES` may the exact
+preflight script be run on that bound host.
 
-The preflight is discovery-only. It does not install packages, bootstrap Docker,
-consume a one-shot run authorization, create formal proof evidence, or mutate
+Once bound, the preflight remains discovery/read-only: it does not install
+packages, bootstrap Docker, consume a one-shot run authorization, create formal
+proof evidence, or mutate
 either GitHub repository or any OSS object. Re-running it is diagnostic only and
 does not itself authorize formal execution.
 
