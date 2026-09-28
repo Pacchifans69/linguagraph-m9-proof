@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Synthetic ossutil stub for offline M9-M9-GATE2 verification.
+# Synthetic ossutil stub for offline M9 Gate 2 verification.
 #
 # It implements ONLY the surface scripts/lib/m9-oss.sh depends on, backed by a
 # local directory instead of Alibaba OSS. It NEVER touches a network or a real

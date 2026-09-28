@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# LinguaGraph M9-M9-GATE2 R2E-B01 offline verification.
+# LinguaGraph M9 Gate 2 R2E-B01 offline verification.
 #
 # Runs ONLY offline/static/synthetic checks:
 #   * bash -n and structural (grep) invariants over the proof harness;
@@ -4831,7 +4831,7 @@ EOF
 }
 
 # ===========================================================================
-printf '===== M9-M9-GATE2 R2E-B01 + R2I-C1 offline verification =====\n'
+printf '===== M9 Gate 2 R2E-B01 + R2I-C1 offline verification =====\n'
 printf 'repo=%s\n' "$REPO_ROOT"
 
 for f in "$WRAPPER" "$CORE" "$ADAPTER" "$PREFLIGHT" "$OSS_LIB" "$IDENTITY_LIB" \

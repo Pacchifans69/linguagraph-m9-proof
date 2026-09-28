@@ -22,7 +22,7 @@ readonly PROOF_ROOT="${M9_PROOF_ROOT:-$(git rev-parse --show-toplevel)}"
 readonly EVIDENCE="${M9_PROOF_EVIDENCE_DIR:-$PROOF_ROOT/proof-artifacts}"
 readonly CANDIDATE="$PROOF_ROOT/candidate"
 
-# Exact Product binding for the M9-M9-GATE2 test-only successor candidate.
+# Exact Product binding for the M9 Gate 2 test-only successor candidate.
 readonly APP_BRANCH='m9-grapheme-safe-native-selection-capture'
 readonly APP_SHA='91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3'
 readonly APP_TREE='e734b357d60364faccb428efd78202099f414aa1'

@@ -1,4 +1,4 @@
-# Required execution artifacts for an M9-M9-GATE2 formal closure (PHASE A).
+# Required execution artifacts for an M9 Gate 2 formal closure (PHASE A).
 #
 # The contract is an EXPLICIT canonical relative-path set. Paths are relative to
 # the formal evidence directory and are compared as a set:

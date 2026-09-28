@@ -1,4 +1,4 @@
-# Required field paths of a valid M9-M9-GATE2 closure receipt (PASS only).
+# Required field paths of a valid M9 Gate 2 closure receipt (PASS only).
 #
 # Dotted paths are resolved against the receipt JSON document by
 # scripts/verify-m9-closure-receipt.py. A field must be present; explicit JSON

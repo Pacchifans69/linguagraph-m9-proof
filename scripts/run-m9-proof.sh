@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# LinguaGraph M9-M9-GATE2 formal proof wrapper.
+# LinguaGraph M9 Gate 2 formal proof wrapper.
 #
 # This is the ONE AND ONLY formal M9 entrypoint:
 #

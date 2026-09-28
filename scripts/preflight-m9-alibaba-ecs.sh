@@ -17,7 +17,7 @@ source "$M9_PREFLIGHT_LIB_DIR/m9-provider-identity.sh"
 
 readonly PRODUCT_URL='https://github.com/Pacchifans69/LinguaGraph.git'
 readonly PROOF_URL='https://github.com/Pacchifans69/linguagraph-m9-proof.git'
-readonly PRODUCT_BRANCH='m9-alignment-connector-obstacle-avoiding-routing'
+readonly PRODUCT_BRANCH='m9-grapheme-safe-native-selection-capture'
 
 die() { printf 'PREFLIGHT_FAIL: %s\n' "$*" >&2; exit 1; }
 

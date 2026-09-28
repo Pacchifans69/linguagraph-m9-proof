@@ -29,6 +29,7 @@ if "$PYTHON" "$ROOT/scripts/verify-m9-targeted-vitest.py" --report "$TMP/failed.
   printf 'FAIL: failed targeted assertion was accepted\n' >&2; exit 1
 fi
 CORE="$ROOT/scripts/run-m9-proof-core.sh"
+PREFLIGHT="$ROOT/scripts/preflight-m9-alibaba-ecs.sh"
 grep -Fq "readonly APP_BRANCH='m9-grapheme-safe-native-selection-capture'" "$CORE"
 grep -Fq "readonly APP_SHA='91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3'" "$CORE"
 grep -Fq "readonly APP_TREE='e734b357d60364faccb428efd78202099f414aa1'" "$CORE"
@@ -38,6 +39,10 @@ grep -Fq "readonly EXPECTED_PYTEST_PASSED='602'" "$CORE"
 grep -Fq "readonly EXPECTED_VITEST_PASSED='561'" "$CORE"
 grep -Fq "readonly EXPECTED_PLAYWRIGHT_PASSED='35'" "$CORE"
 grep -Fq "readonly EXPECTED_M9_TARGETED_PASSED='113'" "$CORE"
+grep -Fq "readonly PRODUCT_BRANCH='m9-grapheme-safe-native-selection-capture'" "$PREFLIGHT"
+if grep -Fq "m9-alignment-connector-obstacle-avoiding-routing" "$PREFLIGHT"; then
+  printf 'FAIL: stale M8-derived Product branch survived in M9 preflight\n' >&2; exit 1
+fi
 grep -Fq "readonly M9_PROVIDER_BINDING_READY='NO'" "$ROOT/scripts/lib/m9-provider-identity.sh"
 if env -u M9_SYNTHETIC_TEST_MODE bash -c 'source "$1"; m9_provider_binding_ready' _ "$ROOT/scripts/lib/m9-provider-identity.sh" >/dev/null 2>&1; then
   printf 'FAIL: formally unbound provider was accepted\n' >&2; exit 1
