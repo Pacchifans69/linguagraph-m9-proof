@@ -782,7 +782,9 @@ set -Eeuo pipefail
 printf 'core-invoked\n' >>"${M9_CORE_SENTINEL:?}"
 EOF
   export M9_CORE_SENTINEL="$TMPROOT/v15-core-invoked"
-  M9_PROOF_ROOT="$root" bash "$root/scripts/run-m9-proof-alibaba-ecs.sh" >"$out" 2>&1 || rc=$?
+  env -u M9_SYNTHETIC_TEST_MODE \
+    M9_PROOF_ROOT="$root" \
+    bash "$root/scripts/run-m9-proof-alibaba-ecs.sh" >"$out" 2>&1 || rc=$?
   (( rc != 0 )) || { printf 'adapter succeeded without wrapper context\n'; return 1; }
   assert_contains "$out" 'M9_ADAPTER_MODE=NONFORMAL'
   assert_contains "$out" 'M9_FORMAL_STATUS=NOT_APPLICABLE'
