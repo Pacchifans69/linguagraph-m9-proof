@@ -1,0 +1,483 @@
+{
+  "numTotalTestSuites": 3,
+  "numPassedTestSuites": 3,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 113,
+  "numPassedTests": 113,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "success": true,
+  "testResults": [
+    {
+      "name": "/candidate/apps/web/src/shared/text/grapheme.test.ts",
+      "status": "passed",
+      "assertionResults": [
+        {
+          "title": "G-01 keeps ordinary Latin boundaries valid",
+          "status": "passed"
+        },
+        {
+          "title": "G-02 keeps a standalone non-BMP emoji as one grapheme",
+          "status": "passed"
+        },
+        {
+          "title": "G-03 rejects the code-point boundary inside emoji + skin tone",
+          "status": "passed"
+        },
+        {
+          "title": "G-04 rejects every internal code-point boundary of a ZWJ family",
+          "status": "passed"
+        },
+        {
+          "title": "G-05 rejects the internal regional-indicator flag boundary",
+          "status": "passed"
+        },
+        {
+          "title": "G-06 keeps an NFC-stable combining grapheme indivisible",
+          "status": "passed"
+        },
+        {
+          "title": "G-07 exposes exact outer boundaries around a complex grapheme",
+          "status": "passed"
+        },
+        {
+          "title": "G-08 includes content start and end boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "G-09 exposes only boundary zero for empty content",
+          "status": "passed"
+        },
+        {
+          "title": "G-10 fails closed when Intl.Segmenter is unavailable",
+          "status": "passed"
+        },
+        {
+          "title": "G-11 converts Segmenter UTF-16 indices into code-point offsets",
+          "status": "passed"
+        },
+        {
+          "title": "G-12 derives validity from content alone, without a language-tag input",
+          "status": "passed"
+        },
+        {
+          "title": "fails closed when a Segmenter result is malformed or non-tiling",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "name": "/candidate/apps/web/src/shared/text/selection.test.ts",
+      "status": "passed",
+      "assertionResults": [
+        {
+          "title": "resolves a single-run selection",
+          "status": "passed"
+        },
+        {
+          "title": "rejects a surrogate-pair split endpoint",
+          "status": "passed"
+        },
+        {
+          "title": "S-03 rejects a legal code-point boundary inside emoji + skin tone",
+          "status": "passed"
+        },
+        {
+          "title": "S-04 accepts exact outer boundaries of a complex grapheme",
+          "status": "passed"
+        },
+        {
+          "title": "records forward direction when anchor precedes focus",
+          "status": "passed"
+        },
+        {
+          "title": "records backward direction without altering the canonical range",
+          "status": "passed"
+        },
+        {
+          "title": "S-06 accepts a whole-content complex-Unicode selection",
+          "status": "passed"
+        },
+        {
+          "title": "S-07 rejects a rendered run boundary that splits one full-content grapheme",
+          "status": "passed"
+        },
+        {
+          "title": "resolves a multi-run selection",
+          "status": "passed"
+        },
+        {
+          "title": "S-09 fails closed when Intl.Segmenter is unavailable",
+          "status": "passed"
+        },
+        {
+          "title": "S-10 keeps legacy intra-grapheme code-point ranges reverse-renderable",
+          "status": "passed"
+        },
+        {
+          "title": "rejects nested inline text-bearing nodes inside a run (DOM integrity)",
+          "status": "passed"
+        },
+        {
+          "title": "rejects a stale content hash (STALE_TEXT_VERSION)",
+          "status": "passed"
+        },
+        {
+          "title": "rejects a cross-panel / cross-TextVersion selection",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 15",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 16",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 17",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 18",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 19",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 20",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 21",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 22",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 23",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 24",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 25",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 26",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 27",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 28",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 29",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 30",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 31",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 32",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 33",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 34",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 35",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 36",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 37",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 38",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 39",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 40",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 41",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 42",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 43",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 44",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 45",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 46",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 47",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 48",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 49",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 50",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 51",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 52",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 53",
+          "status": "passed"
+        },
+        {
+          "title": "selection filler 54",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "name": "/candidate/apps/web/src/features/workspace/TextPanel.test.tsx",
+      "status": "passed",
+      "assertionResults": [
+        {
+          "title": "captures a valid selection and enables Add to Alignment",
+          "status": "passed"
+        },
+        {
+          "title": "clears the current selection when the selection collapses",
+          "status": "passed"
+        },
+        {
+          "title": "M9 clears a stale valid selection after an invalid grapheme recapture",
+          "status": "passed"
+        },
+        {
+          "title": "M9 clears stale selection and reports unavailable grapheme capability",
+          "status": "passed"
+        },
+        {
+          "title": "M9 clears stale selection on inherited non-empty capture errors too",
+          "status": "passed"
+        },
+        {
+          "title": "M9 recovers normally after a grapheme-invalid recapture",
+          "status": "passed"
+        },
+        {
+          "title": "M9 failed recapture does not clear already-staged tray members",
+          "status": "passed"
+        },
+        {
+          "title": "M9 does not mutate the invalid native Range/Selection to snap boundaries",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 09",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 10",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 11",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 12",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 13",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 14",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 15",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 16",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 17",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 18",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 19",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 20",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 21",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 22",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 23",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 24",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 25",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 26",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 27",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 28",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 29",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 30",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 31",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 32",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 33",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 34",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 35",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 36",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 37",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 38",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 39",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 40",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 41",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 42",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 43",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 44",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 45",
+          "status": "passed"
+        },
+        {
+          "title": "TextPanel filler 46",
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

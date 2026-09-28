@@ -1,0 +1,115 @@
+{
+  "schema": "linguagraph-m9-targeted-test-map/v1",
+  "product_candidate_sha": "91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3",
+  "product_candidate_tree": "e734b357d60364faccb428efd78202099f414aa1",
+  "expected_total": 113,
+  "files": {
+    "src/shared/text/grapheme.test.ts": 13,
+    "src/shared/text/selection.test.ts": 54,
+    "src/features/workspace/TextPanel.test.tsx": 46
+  },
+  "requirements": {
+    "G-01": [
+      "G-01 keeps ordinary Latin boundaries valid"
+    ],
+    "G-02": [
+      "G-02 keeps a standalone non-BMP emoji as one grapheme"
+    ],
+    "G-03": [
+      "G-03 rejects the code-point boundary inside emoji + skin tone"
+    ],
+    "G-04": [
+      "G-04 rejects every internal code-point boundary of a ZWJ family"
+    ],
+    "G-05": [
+      "G-05 rejects the internal regional-indicator flag boundary"
+    ],
+    "G-06": [
+      "G-06 keeps an NFC-stable combining grapheme indivisible"
+    ],
+    "G-07": [
+      "G-07 exposes exact outer boundaries around a complex grapheme"
+    ],
+    "G-08": [
+      "G-08 includes content start and end boundaries"
+    ],
+    "G-09": [
+      "G-09 exposes only boundary zero for empty content"
+    ],
+    "G-10": [
+      "G-10 fails closed when Intl.Segmenter is unavailable"
+    ],
+    "G-11": [
+      "G-11 converts Segmenter UTF-16 indices into code-point offsets"
+    ],
+    "G-12": [
+      "G-12 derives validity from content alone, without a language-tag input"
+    ],
+    "S-01": [
+      "resolves a single-run selection"
+    ],
+    "S-02": [
+      "rejects a surrogate-pair split endpoint"
+    ],
+    "S-03": [
+      "S-03 rejects a legal code-point boundary inside emoji + skin tone"
+    ],
+    "S-04": [
+      "S-04 accepts exact outer boundaries of a complex grapheme"
+    ],
+    "S-05": [
+      "records forward direction when anchor precedes focus",
+      "records backward direction without altering the canonical range"
+    ],
+    "S-06": [
+      "S-06 accepts a whole-content complex-Unicode selection"
+    ],
+    "S-07": [
+      "S-07 rejects a rendered run boundary that splits one full-content grapheme"
+    ],
+    "S-08": [
+      "resolves a multi-run selection"
+    ],
+    "S-09": [
+      "S-09 fails closed when Intl.Segmenter is unavailable"
+    ],
+    "S-10": [
+      "S-10 keeps legacy intra-grapheme code-point ranges reverse-renderable"
+    ],
+    "S-11": [
+      "rejects nested inline text-bearing nodes inside a run (DOM integrity)",
+      "rejects a stale content hash (STALE_TEXT_VERSION)",
+      "rejects a cross-panel / cross-TextVersion selection"
+    ],
+    "T-01": [
+      "captures a valid selection and enables Add to Alignment"
+    ],
+    "T-02": [
+      "clears the current selection when the selection collapses"
+    ],
+    "T-03": [
+      "M9 clears a stale valid selection after an invalid grapheme recapture"
+    ],
+    "T-04": [
+      "M9 clears stale selection and reports unavailable grapheme capability"
+    ],
+    "T-05": [
+      "M9 clears stale selection on inherited non-empty capture errors too"
+    ],
+    "T-06": [
+      "M9 clears a stale valid selection after an invalid grapheme recapture"
+    ],
+    "T-07": [
+      "M9 clears stale selection and reports unavailable grapheme capability"
+    ],
+    "T-08": [
+      "M9 recovers normally after a grapheme-invalid recapture"
+    ],
+    "T-09": [
+      "M9 failed recapture does not clear already-staged tray members"
+    ],
+    "T-10": [
+      "M9 does not mutate the invalid native Range/Selection to snap boundaries"
+    ]
+  }
+}
