@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify the M9 closure receipt.
 
-Read-only verifier for the M9-M9-GATE2 closure receipt. It hashes the exact
+Read-only verifier for the M9 Gate 2 closure receipt. It hashes the exact
 file bytes, checks that every required field path is present with the correct
 type, and enforces the receipt's semantic cross-binding rules. A receipt is
 valid only when it is a PASS receipt: no FAIL or INDETERMINATE receipt is ever
