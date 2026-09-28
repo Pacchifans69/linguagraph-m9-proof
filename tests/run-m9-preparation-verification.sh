@@ -47,10 +47,10 @@ stale_duplicated_label='M9-M9-''GATE2'
 if grep -R -Fq -- "$stale_duplicated_label" "$ROOT/scripts" "$ROOT/tests" "$ROOT/README.md"; then
   printf 'FAIL: stale duplicated M9 Gate 2 label survived preparation\n' >&2; exit 1
 fi
-grep -Fq "readonly M9_PROVIDER_BINDING_READY='NO'" "$ROOT/scripts/lib/m9-provider-identity.sh"
-if env -u M9_SYNTHETIC_TEST_MODE bash -c 'source "$1"; m9_provider_binding_ready' _ "$ROOT/scripts/lib/m9-provider-identity.sh" >/dev/null 2>&1; then
-  printf 'FAIL: formally unbound provider was accepted\n' >&2; exit 1
+grep -Fq "readonly M9_PROVIDER_BINDING_READY='YES'" "$ROOT/scripts/lib/m9-provider-identity.sh"
+if ! env -u M9_SYNTHETIC_TEST_MODE bash -c 'source "$1"; m9_provider_binding_ready' _ "$ROOT/scripts/lib/m9-provider-identity.sh" >/dev/null 2>&1; then
+  printf 'FAIL: reviewed M9 provider binding did not pass repository readiness guard\n' >&2; exit 1
 fi
 printf 'M9_PREPARATION_STATIC_VERIFY=PASS\n'
-printf 'PROVIDER_BINDING=UNBOUND_FAIL_CLOSED\n'
+printf 'PROVIDER_BINDING=BOUND_REVIEWED\n'
 printf 'HOSTED_PROOF_EXECUTED=NO\n'

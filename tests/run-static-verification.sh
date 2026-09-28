@@ -13,8 +13,8 @@
 # Every check is labelled V01..V40. Exit status is non-zero if any check fails.
 set -Eeuo pipefail
 
-# This suite is offline/synthetic. The M9 live provider binding is deliberately
-# NOT established during proof-harness preparation.
+# This suite is offline/synthetic. The reviewed M9 provider tuple is repository-
+# bound, but this suite never treats synthetic execution as live provider evidence.
 export M9_SYNTHETIC_TEST_MODE=1
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

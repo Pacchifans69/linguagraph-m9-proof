@@ -7,21 +7,22 @@ Native Selection Capture**. It must not modify the LinguaGraph Product repositor
 
 ```text
 checkpoint:           M9
-proof source:         PREPARATION / PROVIDER-UNBOUND
+proof source:         PREPARATION / PROVIDER-BOUND
 source template:      linguagraph-m8-proof@6ac44484aebc58aac866bfb69f05960189b0aefc
 source template tree: f8b152fd167e42751d0bd725fa26a119f29ae83b
-provider binding:     NOT ESTABLISHED / FAIL-CLOSED
+provider binding:     ESTABLISHED / REVIEWED READ-ONLY
 formal run auth:      NOT ISSUED
 formal execution:     NOT EXECUTED
 Gate 2:               NOT ESTABLISHED
 ```
 
-The inherited M8 provider tuple and OSS role/config mechanics are retained only
-as preparation-time candidate pins and offline synthetic fixtures. They are not
-M9 provider evidence. `M9_PROVIDER_BINDING_READY=NO` makes live provider
-identity verification fail closed until a separately Human-authorized read-only
-M9 provider rebind is reviewed and landed. No M8 authorization, token, claim,
-receipt, or spent namespace is valid for M9.
+The provider tuple and OSS role/config mechanics were inherited from M8 and then
+independently revalidated for M9 by a Human-authorized read-only provider
+rediscovery on 2026-09-28. This provider-rebind landing records
+`M9_PROVIDER_BINDING_READY=YES` without changing any expected tuple, config or
+OSS target value. It does not issue a formal authorization, create a claim or
+execute Gate 2. No M8 authorization, token, claim, receipt, or spent namespace
+is valid for M9.
 
 ## Exact Product binding
 
@@ -97,10 +98,10 @@ rather than fabricating it.
 
 ### Pre-claim provider identity
 
-`scripts/lib/m9-provider-identity.sh` currently carries the inherited M8
-provider-candidate tuple solely as an offline fixture and future revalidation
-candidate. **It is not reviewed M9 execution identity evidence while
-`M9_PROVIDER_BINDING_READY=NO`.** The candidate tuple is:
+`scripts/lib/m9-provider-identity.sh` carries the exact immutable provider
+tuple independently revalidated for M9 on 2026-09-28. The reviewed repository
+binding is recorded by `M9_PROVIDER_BINDING_READY=YES`; the tuple values
+themselves are unchanged from the inherited M8 candidate. The reviewed tuple is:
 
 ```text
 instance ID:   i-j6c9854oyawy89fcdxy2
@@ -128,12 +129,12 @@ but are not part of the immutable execution identity.
 The same library performs the read-only ECS RAM **role-name** observation used to
 pin the OSS auth mode, querying only the role-name LIST endpoint
 (`meta-data/ram/security-credentials/`) and never the credential-payload
-endpoint. Two distinct things must never be conflated here. The **expected** role
-name is proof-tree pinned by the canonical config below and is therefore
-repository-known. The **actual** attached role returned by that live observation
-is *not* repository-known: it is runtime-unproven until observed, must be a
-single plain role name, and must cross-bind exactly against the proof-tree pin
-before any OSS call.
+endpoint. The **expected** role name is proof-tree pinned by the canonical config
+below. During the 2026-09-28 M9 read-only rediscovery, the **actual** attached
+role was observed as `LinguaGraphM8ProofExecutor` and cross-bound exactly
+against that pin. Every future preflight or formal invocation must still observe
+the live role afresh and cross-bind it; the reviewed observation is evidence for
+the repository binding, not a bypass of the runtime guard.
 
 ### OSS object model
 
@@ -293,7 +294,7 @@ canonicalization. The digest is bound before the claim:
 No `PutObject` may occur before every trust-target step has succeeded; the first
 permitted mutating call of a formal run is the atomic claim.
 
-#### Expected pins vs. live bindings this repository does NOT establish
+#### Expected pins vs. reviewed M9 read-only live bindings
 
 Two classes of value must be kept distinct.
 
@@ -306,26 +307,44 @@ None of these pins is evidence of anything on the host: they are the *expected*
 side of a cross-binding, and a mismatch fails closed rather than authorizing a
 call.
 
-The following eight values are **live and unproven** here. They are resolved at
-runtime, are never hard-coded in this repository or in this document, and carry
-no authority until they are observed and cross-bound: the canonical OSS **bucket
-name**; the **actual attached ECS RAM role name** returned by the live IMDSv2
-role-name observation; the **RAM policy result**; the **ossutil path**; the
-**ossutil version**; the **ossutil binary SHA-256**; the **live capability
-result**; and the **live bucket location and versioning result**.
+On 2026-09-28, a Human-authorized read-only M9 provider rediscovery independently
+observed and cross-bound the live trust target against
+`b9a6ff23559ed4ecb0b07f0083cd57c62f814e1d` /
+`7ca4e864cc7c18a79749c14c761bfb30b076ecd8`. No claim or OSS mutation
+occurred:
 
-The *expected* role name is **proof-tree pinned** by the canonical config, but
-that pin is not evidence: the *actual* attached role remains a **live provider
-observation** and must cross-bind exactly against both the config role and the
-stored observed role before any network-capable call. A config pin that does not
-match the live attachment fails closed rather than authorizing anything.
+```text
+review execution UTC:          2026-09-28T15:51:19Z
+attached ECS RAM role:         LinguaGraphM8ProofExecutor
+canonical config:              scripts/config/m9-ossutil-formal.ini
+canonical config bytes:        81
+canonical config SHA-256:      43b384710e4d0944fa3fea3f4daf4dcaba280739cc40d9c31bdbd6c54772c47a
+auth mode:                     Ali-EcsRamRole
+ossutil path:                  /usr/local/bin/ossutil
+ossutil version:               2.4.0
+ossutil binary SHA-256:        16df22628c78506deae0054e319396b38b19ddeb71d7a6db636c5c4729af7b9d
+bucket:                        linguagraph-m8-proof-3539148ae7fa787c
+region:                        cn-hongkong
+endpoint:                      https://oss-cn-hongkong-internal.aliyuncs.com
+endpoint class:                INTERNAL
+network policy:                SAME_REGION_INTERNAL_ONLY
+bucket location:               oss-cn-hongkong
+bucket versioning:             UNVERSIONED
+ossutil capability:            PASS
+internal endpoint read-only:   PASS
+RAM effective read-only access: PASS
+OSS trust profile SHA-256:     93989f3182d5b8c65c1a997781e54be1fa2dbaf41b0da4fd8704f6a416b3fedd
+```
 
-Nothing in this repository asserts that the bucket exists, that a role is
-attached to any instance, that any RAM policy has been proven, that `ossutil` is
-installed, or what its live path, version or binary hash is. No Gate 2 claim is
-made, no authorization has been issued for a formal run, and no formal run has
-been executed or completed. The profile digest shown by any local verification
-run is a synthetic fixture value, not a live binding.
+The review did **not** exercise RAM write permission and did **not** query the RAM
+policy document from the control plane. Those remain deliberately unproven and
+are not mismatches. The live role, ossutil identity, bucket state and trust
+profile must still be re-observed and cross-bound by the repository-native
+preflight and by any later formal run.
+
+No Gate 2 claim is made by this landing. Formal authorization remains **NOT
+ISSUED**, formal execution remains **NOT EXECUTED**, and Gate 2 remains **NOT
+ESTABLISHED**.
 
 ### Critical OSS versioning guard
 
@@ -702,21 +721,18 @@ NO credential provisioning or RAM policy mutation
 
 ## Preflight
 
-At this preparation checkpoint the M9 provider binding is deliberately
-**UNBOUND**, so `scripts/preflight-m9-alibaba-ecs.sh` intentionally fails closed
-at the provider-binding guard and must not be used as discovery authority yet.
+The M9 provider tuple has completed Human-authorized read-only review, and this
+provider-rebind landing records `M9_PROVIDER_BINDING_READY=YES`. The exact
+successor must next run `scripts/preflight-m9-alibaba-ecs.sh` on the reviewed
+bound ECS host as repository-native read-only validation.
 
-The next lifecycle step is a separately Human-authorized **read-only provider
-rediscovery / rebind review**. Only after the resulting immutable provider tuple
-is reviewed and landed with `M9_PROVIDER_BINDING_READY=YES` may the exact
-preflight script be run on that bound host.
-
-Once bound, the preflight remains discovery/read-only: it does not install
+Post-landing validation requires exact changed-scope/content review, complete M9
+shell offline verification, the repository-native preflight on the exact bound
+host, and an exact SHA/tree/clean-worktree guard. The preflight does not install
 packages, bootstrap Docker, consume a one-shot run authorization, create formal
-proof evidence, or mutate
-either GitHub repository or any OSS object. Re-running it is diagnostic only and
-does not itself authorize formal execution.
+proof evidence, or mutate either GitHub repository or any OSS object. Re-running
+it is diagnostic only and does not itself authorize formal execution.
 
-Formal execution of the successor is still **not authorized**. It requires
-separate Human approval of the exact proof commit/tree and a fresh one-shot
-authorization issued into the durable authorization namespace.
+Formal execution of the successor remains **not authorized**. Only after all
+post-landing validation passes may a fresh one-shot M9 formal-run authorization
+be prepared for separate Human approval.

@@ -25,9 +25,10 @@ fi
 M9_PROVIDER_IDENTITY_LIB_LOADED=1
 
 # ---------------------------------------------------------------------------
-# Inherited M8 provider-candidate tuple retained only for offline/synthetic
-# verification and later read-only M9 revalidation. It is NOT established M9
-# provider evidence while M9_PROVIDER_BINDING_READY=NO.
+# M9 provider tuple independently revalidated by Human-authorized read-only
+# rediscovery on 2026-09-28. Values are unchanged from the inherited M8
+# candidate. M9_PROVIDER_BINDING_READY=YES records only the reviewed repository
+# binding; it does not authorize formal execution or establish Gate 2.
 # ---------------------------------------------------------------------------
 readonly EXPECTED_INSTANCE_ID='i-j6c9854oyawy89fcdxy2'
 readonly EXPECTED_REGION_ID='cn-hongkong'
@@ -37,7 +38,7 @@ readonly EXPECTED_IMAGE_ID='ubuntu_24_04_x64_20G_alibase_20260916.vhd'
 readonly EXPECTED_IDENTITY_DOCUMENT_SHA256='60f62ad9f4c10aab718bdc6dfdf0c57e1e4ced293908417009df8e4b7dbdaa1d'
 readonly EXPECTED_IDENTITY_PKCS7_SHA256='89185b286e03b344a5ca7e2f3a242baf4b454419dab0cd83ec3426981860d211'
 
-readonly M9_PROVIDER_BINDING_READY='NO'
+readonly M9_PROVIDER_BINDING_READY='YES'
 readonly M9_PROVIDER_EXECUTOR_ID="alibaba-ecs:${EXPECTED_INSTANCE_ID}"
 
 readonly M9_IMDS_DEFAULT_BASE='http://100.100.100.200/latest'
@@ -64,10 +65,10 @@ m9_provider_identity_executor_id() { printf '%s' "$M9_PROVIDER_EXECUTOR_ID"; }
 
 # Fail closed unless the reviewed tuple is fully bound (no placeholder values).
 m9_provider_binding_ready() {
-  # Offline synthetic verification may exercise inherited provider guards.
-  # Formal production entrypoints reject M9_SYNTHETIC_TEST_MODE before any
-  # external I/O. Real M9 execution remains fail-closed until a separately
-  # Human-reviewed provider rebind changes this repository constant to YES.
+  # Offline synthetic verification may exercise the same provider guards. Formal
+  # production entrypoints reject M9_SYNTHETIC_TEST_MODE before any external I/O.
+  # The reviewed tuple is repository-bound; live preflight/formal execution still
+  # re-verifies the immutable tuple and fails closed on any mismatch.
   if [[ "${M9_SYNTHETIC_TEST_MODE:-0}" == '1' ]]; then
     return 0
   fi
