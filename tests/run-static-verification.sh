@@ -2025,7 +2025,7 @@ c09_b() {
     printf 'C09-B: root manifest hashed itself\n'
     return 1
   fi
-  assert_eq "$(grep -c '  \./' "$root/artifact-manifest.sha256")" '88' 'nested manifest entry count'
+  assert_eq "$(grep -c '  \./' "$root/artifact-manifest.sha256")" '92' 'nested manifest entry count'
   # Sealed verification must FAIL: the nested object cannot be unclassified.
   out="$("$PYTHON" "$REPO_ROOT/scripts/verify-m9-artifact-completeness.py" \
     --root "$root" --required "$REQUIRED_LIST" \
@@ -2048,7 +2048,7 @@ c09_c() {
     m9_manifest_verify "$root" || return 1
   ) || return 1
   required_count="$(grep -Ev '^[[:space:]]*(#|$)' "$REQUIRED_LIST" | wc -l)"
-  assert_eq "$required_count" '87' 'canonical required count'
+  assert_eq "$required_count" '91' 'canonical required count'
   assert_eq "$(grep -c '  \./' "$root/artifact-manifest.sha256")" "$required_count" \
     'root manifest entry count'
   if grep -Fq '  ./artifact-manifest.sha256' "$root/artifact-manifest.sha256"; then
