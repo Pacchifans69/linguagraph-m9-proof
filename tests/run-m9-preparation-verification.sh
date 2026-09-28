@@ -43,7 +43,8 @@ grep -Fq "readonly PRODUCT_BRANCH='m9-grapheme-safe-native-selection-capture'" "
 if grep -Fq "m9-alignment-connector-obstacle-avoiding-routing" "$PREFLIGHT"; then
   printf 'FAIL: stale M8-derived Product branch survived in M9 preflight\n' >&2; exit 1
 fi
-if grep -R -Fq "M9-M9-GATE2" "$ROOT/scripts" "$ROOT/tests" "$ROOT/README.md"; then
+stale_duplicated_label='M9-M9-''GATE2'
+if grep -R -Fq -- "$stale_duplicated_label" "$ROOT/scripts" "$ROOT/tests" "$ROOT/README.md"; then
   printf 'FAIL: stale duplicated M9 Gate 2 label survived preparation\n' >&2; exit 1
 fi
 grep -Fq "readonly M9_PROVIDER_BINDING_READY='NO'" "$ROOT/scripts/lib/m9-provider-identity.sh"
