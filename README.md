@@ -11,8 +11,8 @@ proof source:         PREPARATION / PROVIDER-BOUND
 source template:      linguagraph-m8-proof@6ac44484aebc58aac866bfb69f05960189b0aefc
 source template tree: f8b152fd167e42751d0bd725fa26a119f29ae83b
 provider binding:     ESTABLISHED / REVIEWED READ-ONLY
-formal run auth:      NOT ISSUED
-formal execution:     NOT EXECUTED
+formal run auth:      NOT ISSUED (THIS SUCCESSOR)
+formal execution:     PREDECESSOR RUN-02 ONLY (SPENT)
 Gate 2:               NOT ESTABLISHED
 ```
 
@@ -24,14 +24,24 @@ OSS target value. It does not issue a formal authorization, create a claim or
 execute Gate 2. No M8 authorization, token, claim, receipt, or spent namespace
 is valid for M9.
 
+Two M9 predecessor authorizations are spent and must never be reused. **RUN-01**
+(`M9-EXI-01-RUN-0aae75d8-01`) was issued but never claimed — its formal
+invocation was never sent, so its capability is lost. **RUN-02**
+(`M9-EXI-01-RUN-0aae75d8-02`) was claimed with no closure receipt
+(INDETERMINATE), and its single formal invocation failed closed on the
+predecessor candidate hygiene defect that the Product successor
+`fbbb1316ebae90c464779b43e75376dfe02160e6` corrects. Neither may be
+re-presented, claimed, re-run or durability-retried, and this proof successor
+carries no issued authorization, no claim and no receipt.
+
 ## Exact Product binding
 
 ```text
 repository:     Pacchifans69/LinguaGraph
 branch:         m9-grapheme-safe-native-selection-capture
-candidate SHA:  91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3
-candidate tree: e734b357d60364faccb428efd78202099f414aa1
-unique parent:  6dc5c84fb90b9f09e9f59a7b43c1f2b7d9c205a1
+candidate SHA:  fbbb1316ebae90c464779b43e75376dfe02160e6
+candidate tree: f85abee9298c01a0fd8468d49caa16d2a2d90785
+unique parent:  91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3
 frozen main:    e752d2c3358217770ee7029ace07687a15cf927a
 Alembic head:   0006
 ```
@@ -342,9 +352,8 @@ are not mismatches. The live role, ossutil identity, bucket state and trust
 profile must still be re-observed and cross-bound by the repository-native
 preflight and by any later formal run.
 
-No Gate 2 claim is made by this landing. Formal authorization remains **NOT
-ISSUED**, formal execution remains **NOT EXECUTED**, and Gate 2 remains **NOT
-ESTABLISHED**.
+No Gate 2 claim is made by this landing, and this proof successor has no issued
+authorization, no claim and no receipt. Gate 2 remains **NOT ESTABLISHED**.
 
 ### Critical OSS versioning guard
 

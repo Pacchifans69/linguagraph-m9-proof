@@ -321,9 +321,9 @@ document = {
     "oss_trust_profile_sha256": profile_sha,
     "proof_sha": proof_sha,
     "proof_tree": proof_tree,
-    "candidate_sha": "91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3",
-    "candidate_tree": "e734b357d60364faccb428efd78202099f414aa1",
-    "candidate_parent": "6dc5c84fb90b9f09e9f59a7b43c1f2b7d9c205a1",
+    "candidate_sha": "fbbb1316ebae90c464779b43e75376dfe02160e6",
+    "candidate_tree": "f85abee9298c01a0fd8468d49caa16d2a2d90785",
+    "candidate_parent": "91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3",
     "frozen_main": "e752d2c3358217770ee7029ace07687a15cf927a",
     "provider_identity": {
         "instance_id": "i-j6c9854oyawy89fcdxy2",
@@ -1265,7 +1265,7 @@ v36() {
       --receipt "$receipt" \
       --expect-sha256 "$RECEIPT_VERIFIED_SHA256" \
       --expect-proof-sha "$APPROVED_PROOF_SHA" \
-      --expect-candidate-sha '91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3' \
+      --expect-candidate-sha 'fbbb1316ebae90c464779b43e75376dfe02160e6' \
       --expect-authorization-sha "$AUTH" \
       --expect-archive-sha256 "$SEALED_ARCHIVE_SHA256" >/dev/null || return 1
     # Cross-binding and provider digest fields must be present and consistent.
@@ -1473,9 +1473,9 @@ document = {
     "semantic_auth_sha256": semantic_auth,
     "proof_sha": proof_sha,
     "proof_tree": proof_tree,
-    "candidate_sha": "91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3",
-    "candidate_tree": "e734b357d60364faccb428efd78202099f414aa1",
-    "candidate_parent": "6dc5c84fb90b9f09e9f59a7b43c1f2b7d9c205a1",
+    "candidate_sha": "fbbb1316ebae90c464779b43e75376dfe02160e6",
+    "candidate_tree": "f85abee9298c01a0fd8468d49caa16d2a2d90785",
+    "candidate_parent": "91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3",
     "frozen_main": "e752d2c3358217770ee7029ace07687a15cf927a",
     "provider_identity": {
         "instance_id": "i-j6c9854oyawy89fcdxy2",
@@ -4410,9 +4410,9 @@ c14_write_context() {
     printf 'semantic_auth_sha256=%s\n' "$auth_sha"
     printf 'proof_sha=%s\n' "$proof_sha"
     printf 'proof_tree=%s\n' "$proof_tree"
-    printf 'candidate_sha=91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3\n'
-    printf 'candidate_tree=e734b357d60364faccb428efd78202099f414aa1\n'
-    printf 'candidate_parent=6dc5c84fb90b9f09e9f59a7b43c1f2b7d9c205a1\n'
+    printf 'candidate_sha=fbbb1316ebae90c464779b43e75376dfe02160e6\n'
+    printf 'candidate_tree=f85abee9298c01a0fd8468d49caa16d2a2d90785\n'
+    printf 'candidate_parent=91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3\n'
     printf 'frozen_main=e752d2c3358217770ee7029ace07687a15cf927a\n'
     printf 'authorized_executor_id=alibaba-ecs:i-j6c9854oyawy89fcdxy2\n'
     printf 'executor_id=alibaba-ecs:i-j6c9854oyawy89fcdxy2\n'

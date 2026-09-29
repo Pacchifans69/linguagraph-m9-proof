@@ -24,9 +24,9 @@ readonly CANDIDATE="$PROOF_ROOT/candidate"
 
 # Exact Product binding for the M9 Gate 2 test-only successor candidate.
 readonly APP_BRANCH='m9-grapheme-safe-native-selection-capture'
-readonly APP_SHA='91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3'
-readonly APP_TREE='e734b357d60364faccb428efd78202099f414aa1'
-readonly APP_PARENT='6dc5c84fb90b9f09e9f59a7b43c1f2b7d9c205a1'
+readonly APP_SHA='fbbb1316ebae90c464779b43e75376dfe02160e6'
+readonly APP_TREE='f85abee9298c01a0fd8468d49caa16d2a2d90785'
+readonly APP_PARENT='91f5cb3ee951e253b8d97e6f5fa4f719c75b22d3'
 readonly MAIN_SHA='e752d2c3358217770ee7029ace07687a15cf927a'
 readonly ALEMBIC_HEAD='0006'
 readonly APP_URL='https://github.com/Pacchifans69/LinguaGraph.git'
